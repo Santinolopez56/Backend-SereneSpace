@@ -64,34 +64,54 @@ export const login = (req: Request, res: Response) => {
   });
 };
 
-export const getAllProducts = (_: Request, res: Response) => {
+export const getAllProducts = (_: Request, res: Response) => { //modificaciones productos
   console.table(users);
   const products = [
     {
-      nombre: "Auto",
-      precio: 800,
-      caracteristicas: "anda",
+      nombre: "Press de Banca",
+      precio: 900,
+      caracteristicas: "Maquina de pecho",
     },
     {
-      nombre: "moto",
-      precio: 800,
-      caracteristicas: "anda",
+      nombre: "Press inclinado",
+      precio: 950,
+      caracteristicas: "Maquina de Pecho",
     },
     {
-      nombre: "camion",
-      precio: 800,
-      caracteristicas: "anda",
+      nombre: "Press declinado",
+      precio: 750,
+      caracteristicas: "Maquina de Pecho",
     },
     {
-      nombre: "avion",
-      precio: 800,
-      caracteristicas: "anda",
+      nombre: "Prensa 45°",
+      precio: 1100,
+      caracteristicas: "Maquina de Piernas",
     },
     {
-      nombre: "barco",
-      precio: 800,
-      caracteristicas: "anda",
+      nombre: "Sillon cuadriceps",
+      precio: 400,
+      caracteristicas: "Maquina de Piernas",
     },
+    {
+        nombre: "Gemelos",
+        precio: 420,
+        caracteristicas: "Maquina de Pierna",
+      },
+      {
+        nombre: "Dorsalera",
+        precio: 940,
+        caracteristicas: "Maquina de Espalda",
+      },
+      {
+        nombre: "Remo",
+        precio: 320,
+        caracteristicas: "Maquina de Espalda",
+      },
+      {
+        nombre: "Barra de Dominadas",
+        precio: 90,
+        caracteristicas: "Maquina de Espalda",
+      },
   ];
   res.json({
     products,
