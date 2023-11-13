@@ -1,12 +1,9 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import { getAllProducts } from "../controllers/controllers";
 
 const router = Router()
 
-router.get("/", (req: Request, res: Response) => {
-    res.json({
-        nombre: "auto"
-    })
-})
+router.get("/products", getAllProducts)
 
 
 export default router

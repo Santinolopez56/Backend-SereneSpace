@@ -9,9 +9,7 @@ export class Server {
 
         this.expressApp.use(cors())
         this.expressApp.use(express.json())
-
         this.expressApp.use(router)
-
         this.expressApp.listen(8080)
 
     }
