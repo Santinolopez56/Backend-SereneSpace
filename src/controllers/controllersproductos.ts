@@ -3,7 +3,7 @@ import { Users } from "../models/users";
 
 const users: Users[] = [];
 
-export const getAllProducts = (_: Request, res: Response) => { //modificaciones productos
+export const getAllProducts = (_: Request, res: Response) => {
     console.table(users);
     const products = [
       {
