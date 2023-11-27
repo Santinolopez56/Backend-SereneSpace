@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import router from "../routes/routes";
+import router from "./routes/routes";
 import 'reflect-metadata';
-import '../db/db';
+import './db';
 
 const app = express();
 const port = 8080;

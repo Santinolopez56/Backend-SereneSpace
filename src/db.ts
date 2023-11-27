@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import producto from "../models/products"
+import producto from "./models/products"
 import {DataSource} from "typeorm"
 
 

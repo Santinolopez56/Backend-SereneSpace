@@ -5,7 +5,7 @@ export default class Users {
     @PrimaryGeneratedColumn()
     id!:number;
 
-    @Column({ length:70 })
+    @Column({ length:70 }) 
     email:string;
 
     @Column ({ length: 30 })

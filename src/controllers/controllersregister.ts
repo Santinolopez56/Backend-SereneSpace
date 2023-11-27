@@ -1,6 +1,7 @@
+import producto  from '../models/products'; 
 import { Request, Response } from "express";
 import Users from "../models/users"; 
-import { AppDataSource } from "../db/db";
+import { AppDataSource } from "../db";
 
 export const login = async (req:Request, res: Response) => {
   const {Users, password} = req.body
@@ -38,3 +39,16 @@ export const register = async (req:Request, res:Response) =>{
 
   }
 }
+
+
+export const getAllProducts = async (_: any, res: Response) => {
+  try {
+    const productRepository = AppDataSource.manager.getRepository(producto);
+    const productos = await productRepository.find();
+
+    res.status(200).json(productos); 
+  } catch (error) {
+    res.status(500).json({message:"Error al obtener los productos"});
+  }
+};
+
