@@ -1,65 +1,40 @@
 import { Request, Response } from "express";
-import { Users } from "../models/users";
+import Users from "../models/users"; 
+import { AppDataSource } from "../db/db";
 
-const users: Users[] = [];
-
-export const register = (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  if (email == null || password == null) {
-    return res.status(400).json({
-      msg: "El email y la contraseña son obligatorios",
-    });
+export const login = async (req:Request, res: Response) => {
+  const {Users, password} = req.body
+  try{
+      const comparador = await AppDataSource.manager.findOne(Users, {where:{Users, password}})
+      if (comparador) {res.json({mensaje: "ingreso correcto"})}
+      else {res.status(400).json({mensaje: "ingreso fallido"})}
   }
-  let existUser = false;
-  users.forEach((e) => {
-    if (email == e.email) {
-      existUser = true;
-      return;
-    }
-  });
-  if (existUser) {
-    return res.status(400).json({
-      msg: `email ${email} ya en uso`,
-    });
+  catch(error){
+      console.log(error)
   }
-  const user = new Users(email, password);
+}
 
-  users.push(user);
-  return res.status(201).json({
-    msg: "Usuario creado",
-    user,
-  });
-};
+export const register = async (req:Request, res:Response) =>{
+  const {email,password} = req.body
+  console.log (req.body)
 
-export const login = (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  if (email == null || password == null) {
-    return res.status(400).json({
-      msg: "El email y la contraseña son obligatorios",
-    });
+
+  const comparador = await AppDataSource.manager.findOne(Users, {where:{email}})
+  if (comparador) {
+      return res.status(400).json({ error: 'El Usuario o Email ya esta en uso' });
+  } else {
+
+      const newUser = new Users(email, password);
+      try {
+          await AppDataSource.manager.save(newUser)
+          return res.status(200).json({mensaje: 'El usuario se guardo exitosamente'})
+
+      } catch (error) {
+          console.log(error)
+
+          return res.status(400).json({mensaje:'ERROR, no se puso crear el usuario'})
+
+      }
+
   }
-  let user: Users | null = null;
-
-  for (const userInUsers of users) {
-    if (userInUsers.email == email) {
-      user = userInUsers;
-      break;
-    }
-  }
-
-  if (user == null)
-    return res.json({
-      msg: "Usuario no encontrado",
-    });
-
-  if (password != user.password) {
-    return res.status(400).json({
-      msg: "Contraseña incorrecta",
-    });
-  }
-
-  return res.json({
-    msg: "Sesion iniciada",
-    user,
-  });
-};
+}
