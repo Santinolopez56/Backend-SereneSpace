@@ -33,7 +33,7 @@ export const register = async (req:Request, res:Response) =>{
       } catch (error) {
           console.log(error)
 
-          return res.status(400).json({mensaje:'ERROR, no se puso crear el usuario'})
+          return res.status(400).json({mensaje:'Error no se pudo crear el usuario'})
 
       }
 

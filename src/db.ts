@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import producto from "./models/products"
+import Users from "./models/users";
 import {DataSource} from "typeorm"
 
 
@@ -13,7 +14,7 @@ export const AppDataSource=new DataSource({
     database:"serene",
     synchronize:true,
     logging:true,
-    entities:[ producto ]
+    entities:[ producto,Users]
 })
 
 AppDataSource.initialize()

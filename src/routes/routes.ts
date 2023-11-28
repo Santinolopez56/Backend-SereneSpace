@@ -4,7 +4,7 @@ import { register, login, getAllProducts } from "../controllers/controllersregis
 const router = Router()
 
 router.get("/producto",getAllProducts)
-router.post("/usuario", register)
+router.post("/register", register)
 router.post ("/login", login)
 
 
