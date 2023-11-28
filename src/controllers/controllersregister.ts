@@ -4,9 +4,9 @@ import Users from "../models/users";
 import { AppDataSource } from "../db";
 
 export const login = async (req:Request, res: Response) => {
-  const {Users, password} = req.body
+  const {email, password} = req.body
   try{
-      const comparador = await AppDataSource.manager.findOne(Users, {where:{Users, password}})
+      const comparador = await AppDataSource.manager.findOne(Users, {where:{email, password}})
       if (comparador) {res.json({mensaje: "ingreso correcto"})}
       else {res.status(400).json({mensaje: "ingreso fallido"})}
   }
