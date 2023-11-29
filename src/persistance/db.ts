@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import producto from "./models/products"
-import Users from "./models/users";
+import producto from "../models/products"
+import Users from "../models/users";
 import {DataSource} from "typeorm"
 
 

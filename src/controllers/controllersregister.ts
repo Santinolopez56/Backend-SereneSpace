@@ -1,7 +1,7 @@
 import producto  from '../models/products'; 
 import { Request, Response } from "express";
 import Users from "../models/users"; 
-import { AppDataSource } from "../db";
+import { AppDataSource } from "../persistance/db";
 
 export const login = async (req:Request, res: Response) => {
   const {email, password} = req.body
